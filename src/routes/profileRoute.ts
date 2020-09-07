@@ -17,7 +17,7 @@ router.get('/:profileId', (req: Request, res: Response) => {
 
   Profile.findById(profileId, '_id email', (err, profile) => {
     if(err) { console.log("Il y a eu une erreur"); }
-    if(profile == null) { res.status(404); return; }
+    if(profile === null) { res.status(404); return; }
 
     res.send(profile);
   });

@@ -17,7 +17,7 @@ profileSchema.methods.getFullname = function () {
   return `${this.firstname} ${this.lastname}`
 }
 
-export const Profile = model<IProfile, Model<IProfile>>("profile", profileSchema)
+export const Profile = model<IProfile, Model<IProfile>>("profile", profileSchema);
 
 
 
