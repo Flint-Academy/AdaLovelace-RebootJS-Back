@@ -19,7 +19,7 @@ router.get('/:profileId', (req: Request, res: Response) => {
     if(err) { console.log("Il y a eu une erreur"); }
     if(profile == null) { res.status(404); return; }
 
-    res.send(profile.email);
+    res.send(profile);
   });
 });
 
