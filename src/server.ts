@@ -2,8 +2,10 @@ import express, { Request, Response, ErrorRequestHandler } from 'express';
 import morgan from "morgan";
 import helmet from "helmet";
 import { configuration, IConfig } from "./config";
-import profileRoutes from './routes/profileRoute';
 import { connect } from './database';
+
+import profileRoutes from './routes/profileRoute';
+import loginRoute from './routes/loginRoute';
 
 export function createExpressApp(config: IConfig): express.Express {
   const { express_debug } = config;
@@ -19,7 +21,8 @@ export function createExpressApp(config: IConfig): express.Express {
     res.status(500).send(!express_debug ? 'Oups' : err);
   }) as ErrorRequestHandler);
 
-  app.use('/profile', profileRoutes)
+  app.use('/profile', profileRoutes);
+  app.use('/login', loginRoute);
   app.get('/', (req: Request, res: Response) => { res.send('This is the boilerplate for Flint Messenger app') });
 
   return app;
