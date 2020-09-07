@@ -6,6 +6,7 @@ import { connect } from './database';
 
 import profileRoutes from './routes/profileRoute';
 import loginRoute from './routes/loginRoute';
+import { authenticationInitialize } from './controllers/authentification';
 
 export function createExpressApp(config: IConfig): express.Express {
   const { express_debug } = config;
@@ -15,6 +16,8 @@ export function createExpressApp(config: IConfig): express.Express {
   app.use(morgan('combined'));
   app.use(helmet());
   app.use(express.json());
+
+  app.use(authenticationInitialize());
 
   app.use(((err, _req, res, _next) => {
     console.error(err.stack);
