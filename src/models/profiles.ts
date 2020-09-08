@@ -1,7 +1,6 @@
 import { Document, Schema, model, Model } from 'mongoose';
 import { SHA256 } from 'crypto-js';
 
-
 export interface IProfile extends Document {
   email: string;
   lastname: string;
