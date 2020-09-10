@@ -25,9 +25,6 @@ export function createExpressApp(config: IConfig): express.Express {
   app.use(express.json());
   app.use(cors());
 
-  app.use(authenticationInitialize());
-  app.use(authenticationSession());
-
   app.use(session({
     name: session_cookie_name,
     secret: session_secret,
@@ -35,6 +32,10 @@ export function createExpressApp(config: IConfig): express.Express {
     saveUninitialized: false,
     store: new MongoStore({mongooseConnection: mongoose.connection})
   }))
+
+  app.use(authenticationInitialize());
+  app.use(authenticationSession());
+
   app.use(((err, _req, res, _next) => {
     console.error(err.stack);
     res.status(500).send(!express_debug ? 'Oups' : err);
