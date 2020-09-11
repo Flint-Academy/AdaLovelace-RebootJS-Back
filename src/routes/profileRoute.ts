@@ -10,9 +10,14 @@ router.post('/', (req: Request, res: Response) => {
 
   const newProfile = new Profile({email: email, firstname: firstname, lastname: lastname});
   newProfile.setPassword(password);
-  newProfile.save();
+  newProfile.save()
+    .then(profile => {
+      return res.send(profile.getSafeProfile());
+    }).catch(error => {
+      console.error(error);
+      return res.status(500).send();
+    });
 
-  res.send('Utilisateur créé');
 });
 
 router.get('/:profileId', authenticationRequired, (req: Request, res: Response) => {
