@@ -9,6 +9,7 @@ import { authenticationInitialize, authenticationSession } from './controllers/a
 
 import profileRoutes from './routes/profileRoute';
 import loginRoute from './routes/loginRoute';
+import messageRoute from './routes/messageRoute';
 
 import session from 'express-session';
 import connectMongo from 'connect-mongo';
@@ -46,6 +47,7 @@ export function createExpressApp(config: IConfig): express.Express {
 
   app.use('/profile', profileRoutes);
   app.use('/login', loginRoute);
+  app.use('/messages', messageRoute);
   app.get('/', (req: Request, res: Response) => { res.send('This is the boilerplate for Flint Messenger app') });
 
   return app;
