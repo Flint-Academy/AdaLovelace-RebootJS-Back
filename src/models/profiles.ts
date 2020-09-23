@@ -6,7 +6,7 @@ export interface IProfile extends Document {
   lastname: string;
   firstname: string;
   conversationSeen: { [conversationId: string] : string }
-  socket: string;
+  socket?: string;
   getFullname: () => string;
   setPassword: (password: string) => void;
   verifyPassword: (password: string) => boolean;
